@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy Docker container
-                sh 'docker run -d -p 8081:80 my-angular-app:latest'
+                sh 'docker run -d -p 8082:80 my-angular-app:latest'
             }
         }
         

@@ -12,7 +12,14 @@ pipeline {
             }
         }
         
-                stage('Docker Build') {
+        stage('Docker container Delete') {
+            steps {
+                // Delete Docker container
+                sh 'docker rm -f my-angular-app-container'
+            }
+        }
+        
+        stage('Docker Build') {
             steps {
                 // Build Docker image
                 script {
@@ -24,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy Docker container
-                sh 'docker run -d -p 8082:80 my-angular-app:latest'
+                sh 'docker run -d -p 8082:80 --name my-angular-app-container my-angular-app'
             }
         }
         
